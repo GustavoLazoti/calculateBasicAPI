@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace cSharpLogicPrograming.Models
 {
-    internal class HistoricoItem
+    public class MathOperation
     {
-        public string Operacao { get; set; }
-        public DateTime Date { get; set; }
+        public string Expression { get; set; }
+        public DateTime CreatedAt { get; set; }  
     }
 }

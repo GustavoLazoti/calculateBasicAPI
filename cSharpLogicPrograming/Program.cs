@@ -23,7 +23,7 @@ namespace cSharpLogicPrograming
 
             calculadora.Soma(1, 2);
 
-            ExibirHistorico();
+            calculadora.ExibirHistorico();
 
             Console.ReadLine();
 

@@ -1,4 +1,5 @@
 ﻿using cSharpLogicPrograming;
+using cSharpLogicPrograming.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace cSharpLogicPrograming.Services
     
     internal class HistoricoService
     {
-        private readonly List<string> Historico;
+        private readonly List<MathOperation> Historico;
 
         public HistoricoService()
         {
-            Historico = new List<string>();
+            Historico = new List<MathOperation>();
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace cSharpLogicPrograming.Services
             {
                 Console.WriteLine("Aqui segue suas opereções realizadas");
                 foreach (var item in Historico)
-                    Console.WriteLine(item, item + 1);
+                    Console.WriteLine($"Created at:{item.CreatedAt} -> {item.Expression}");
                    
             }
             else
@@ -38,7 +39,7 @@ namespace cSharpLogicPrograming.Services
 
         /// <summary>
         /// Remove e limpa todo conteudo do histórico
-        /// </summary>
+        /// </summary>x
         public void LimparHistorico()
         {
             Historico.Clear();
@@ -50,8 +51,11 @@ namespace cSharpLogicPrograming.Services
         /// <param name="operacao"></param>
         public void AddItemHistorico(string operacao)
         {
-            Historico.Add(operacao);
-            Historico.Add(DateTime.Now.ToString("D"));
+            Historico.Add(new MathOperation
+            {
+                CreatedAt = DateTime.Now,
+                Expression = operacao
+            }) ;
         }
     }
 }
