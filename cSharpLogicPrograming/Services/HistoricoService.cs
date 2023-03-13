@@ -40,7 +40,7 @@ namespace cSharpLogicPrograming.Services
         /// <summary>
         /// Remove e limpa todo conteudo do histórico
         /// </summary>x
-        public void LimparHistorico()
+        private void LimparHistorico()
         {
             Historico.Clear();
         }
@@ -49,13 +49,14 @@ namespace cSharpLogicPrograming.Services
         /// Realizar a inserção de um novo item dentro do histórico
         /// </summary>
         /// <param name="operacao"></param>
-        public void AddItemHistorico(string operacao)
+        public void AddItemHistorico(MathOperation operation)
+        { 
+           Historico.Add(operation);
+        }
+
+        public MathOperation LastOperation()
         {
-            Historico.Add(new MathOperation
-            {
-                CreatedAt = DateTime.Now,
-                Expression = operacao
-            }) ;
+            return Historico.Count > 0 ? Historico.Last() : null;
         }
     }
 }

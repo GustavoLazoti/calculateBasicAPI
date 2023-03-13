@@ -10,19 +10,8 @@ namespace cSharpLogicPrograming
     {
         public static List<string> Historico = new List<string>();
        
-        public static int Menu()
+        public static void Menu()
         {
-
-            int escolha = 0;
-            if (Program.QntExec == 0)
-            {
-                Console.WriteLine("Bem vindo!");
-            }
-            Console.WriteLine("Escolha a operação desejada: \n 1 = Soma \n 2 = Subtração \n 3 = Multiplicação \n 4 = Divisão \n 5 = Histórico \n 6 = Sair");
-            var valorlido = Console.ReadLine();
-            escolha = Int32.Parse(valorlido);
-            Procedural.EscolhasUsuario(escolha);
-            return (escolha);
         }
         public static void HistoricoContas()
         {
@@ -52,7 +41,5 @@ namespace cSharpLogicPrograming
                     break;
             }
         }
-
-
     }
 }
