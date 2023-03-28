@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,9 @@ namespace cSharpLogicPrograming.View
 {
     public class ToUser
     {
-        public int EscolhasMenu()
+        public int Menu()
         {
             int escolha = 0;
-            if (Program.QntExec == 0)
-            {
-                Console.WriteLine("Bem vindo!");
-            }
             Console.WriteLine("Escolha a operação desejada: \n 1 = Soma \n 2 = Subtração \n 3 = Multiplicação \n 4 = Divisão \n 5 = Histórico \n 6 = Sair");
             var valorlido = Console.ReadLine();
             escolha = Int32.Parse(valorlido);
@@ -26,18 +23,33 @@ namespace cSharpLogicPrograming.View
         public RequestOperations GetValues(char operation)
         {
             var operacao = operation;
+            if (operation != 'h') 
+            { 
+            Console.WriteLine("Digite o primeiro valor:");
             double valor1 = Double.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o segundo valor:");
             double valor2 = Double.Parse(Console.ReadLine());
-
-            return new RequestOperations()
+            Console.WriteLine("\n");
+                return new RequestOperations()
+                {
+                    Value1 = valor1,
+                    Value2 = valor2,
+                    Operation = operacao
+                };
+            }
+            else 
             {
-                Value1 = valor1,
-                Value2 = valor2,
-                Operation = operacao
-            };
+                return new RequestOperations()
+                {
+                    Value1 = 0,
+                    Value2 = 0,
+                    Operation = operacao
+                };
+            }
+            
 
         }
-        public RequestOperations EscolhasUsuario(int escolha)
+        public RequestOperations UserChoice(int escolha)
         {
             RequestOperations request = null;
             switch (escolha)
@@ -60,7 +72,8 @@ namespace cSharpLogicPrograming.View
                     break;
                 case 5:
                     Console.WriteLine("Exibindo Histórico");
-                    return null;
+                    request = GetValues('h');
+                    return request;
                 default:
                     break;
             }
@@ -69,7 +82,13 @@ namespace cSharpLogicPrograming.View
 
         public void ShowSingleResult(MathOperation mathOperation)
         {
-            Console.WriteLine($"{mathOperation}");
+
+            Console.WriteLine($"Operação realizada: {mathOperation.Expression}\n");
+        }
+
+        public void ShowHistoric(List<String> LastHistoric) 
+        {
+            foreach(var item in LastHistoric) { Console.WriteLine($"{item}"); }
         }
     }
 }

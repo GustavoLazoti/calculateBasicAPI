@@ -17,7 +17,7 @@ namespace cSharpLogicPrograming.Models
 
         public MathOperation(RequestOperations request, double resultado)
         {
-            Expression = FormatarResultado(request.Value1, request.Value2, resultado, request.Operation);
+            Expression = ResultToFormat(request.Value1, request.Value2, resultado, request.Operation);
             CreatedAt = DateTime.Now;
             Value1 = request.Value1;
             Value2 = request.Value2;
@@ -25,7 +25,7 @@ namespace cSharpLogicPrograming.Models
             Resultado = resultado;
         }
 
-        private string FormatarResultado(double valor1, double valor2, double resultado, char operando)
+        private string ResultToFormat(double valor1, double valor2, double resultado, char operando)
         {
             return $"{valor1} {operando} {valor2} = {resultado}";
         }

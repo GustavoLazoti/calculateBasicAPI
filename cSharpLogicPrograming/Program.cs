@@ -19,8 +19,21 @@ namespace cSharpLogicPrograming
             
             do
             {
-                var resultado = calculadora.ExecOperation(userInterface.EscolhasUsuario(userInterface.EscolhasMenu()));
-                userInterface.ShowSingleResult(resultado);
+                int i = userInterface.Menu();
+                if (i == 1 || i == 2 || i == 3 || i == 4)
+                {
+                    var result = calculadora.ExecOperation(userInterface.UserChoice(i));
+                    userInterface.ShowSingleResult(result);
+                }
+                else if(i == 5)
+                {
+                    var a = userInterface.UserChoice(i);
+                    calculadora.ExecOperation(a);
+                }
+                else 
+                {
+                    break;
+                }
             } while (true);
         }
         

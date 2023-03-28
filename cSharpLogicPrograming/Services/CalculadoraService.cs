@@ -28,11 +28,11 @@ namespace cSharpLogicPrograming.Services
             return Historico.LastOperation();
         }
 
-        public void ExibirHistorico()
+        public void HistoricShow()
         {
             
 
-            Historico.ExibirHistorico();
+            Historico.HistoricShow();
         }
 
         public MathOperation ExecOperation(RequestOperations request)
@@ -52,10 +52,18 @@ namespace cSharpLogicPrograming.Services
                 case '/':
                     resultado = Div(request.Value1, request.Value2);
                     break;
+                case 'h':
+                    var hist = Historico.HistoricShow();
+                    toUser.ShowHistoric(hist);
+                    break;
             }
+            if(request.Operation != 'h') 
+            { 
             var objResultado = new MathOperation(request, resultado);
-            Historico.AddItemHistorico(objResultado);
+            Historico.AddItemHistoric(objResultado);
             return objResultado;
+            }
+            return null;
         }
 
         private double Soma(double valor1, double valor2)

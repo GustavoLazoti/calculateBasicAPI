@@ -21,26 +21,35 @@ namespace cSharpLogicPrograming.Services
         /// <summary>
         /// Realiza a exibição das operações aritiméticas realizadas
         /// </summary>
-        public void ExibirHistorico()
+        public List<String> HistoricShow()
         {            
 
             if (Historico.Count > 0)
             {
                 Console.WriteLine("Aqui segue suas opereções realizadas");
-                foreach (var item in Historico)
-                    Console.WriteLine($"Created at:{item.CreatedAt} -> {item.Expression}");
-                   
+                var LastHistoric = new List<string>();
+                foreach (var item in Historico) 
+                {
+                    if (LastHistoric.Count != 11)
+                    {
+                        LastHistoric.Add(item.CreatedAt.ToString());
+                        LastHistoric.Add(item.Expression.ToString());
+                    }
+                    else break;
+                }
+                return LastHistoric;
             }
             else
             {
                 Console.WriteLine("Ainda não há nenhuma operação realizada");
+                return null;
             }
         }
 
         /// <summary>
         /// Remove e limpa todo conteudo do histórico
         /// </summary>x
-        private void LimparHistorico()
+        private void HistoricClear()
         {
             Historico.Clear();
         }
@@ -49,7 +58,7 @@ namespace cSharpLogicPrograming.Services
         /// Realizar a inserção de um novo item dentro do histórico
         /// </summary>
         /// <param name="operacao"></param>
-        public void AddItemHistorico(MathOperation operation)
+        public void AddItemHistoric(MathOperation operation)
         { 
            Historico.Add(operation);
         }

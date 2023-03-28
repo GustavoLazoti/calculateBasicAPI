@@ -43,10 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="historic.cs" />
     <Compile Include="Models\InterfaceOperations.cs" />
     <Compile Include="Models\MathOperation.cs" />
-    <Compile Include="Procedural.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CalculadoraService.cs" />
