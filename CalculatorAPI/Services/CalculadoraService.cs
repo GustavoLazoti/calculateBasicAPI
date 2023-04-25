@@ -6,9 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using cSharpLogicPrograming.Models;
 using cSharpLogicPrograming.View;
-using cSharpLogicPrograming.Services;
 
-namespace cSharpLogicPrograming.Services
+namespace CalculatorAPI.Services
 {
     internal class CalculadoraService
     {
@@ -30,67 +29,69 @@ namespace cSharpLogicPrograming.Services
 
         public void HistoricShow()
         {
+
+
             Historico.HistoricShow();
         }
 
         public MathOperation ExecOperation(RequestOperations request)
         {
             double resultado = 0;
-            switch (request.Operation) 
+            switch (request.Operation)
             {
-                case '+':
-                    resultado = Sum(request.Value1, request.Value2);
+                case "+" or "sum":
+                    resultado = Soma(request.Value1, request.Value2);
                     break;
-                case '-':
-                    resultado = Subtraction(request.Value1, request.Value2);
+                case "-" or "subtraction":
+                    resultado = Subtracao(request.Value1, request.Value2);
                     break;
-                case '*':
+                case "*" or "multiplication":
                     resultado = Mult(request.Value1, request.Value2);
                     break;
-                case '/':
+                case "/" or "divided":
                     resultado = Div(request.Value1, request.Value2);
                     break;
-                case 'h':
+                case "h" or "historic":
                     var hist = Historico.HistoricShow();
                     toUser.ShowHistoric(hist);
                     break;
             }
-            if(request.Operation != 'h')
-            { 
-            var objResult = new MathOperation(request, resultado);
-            Historico.AddItemHistoric(objResult);
-            return objResult;
+            if (request.Operation != "h")
+            {
+                var objResultado = new MathOperation(request, resultado);
+                Historico.AddItemHistoric(objResultado);
+                return objResultado;
             }
             return null;
         }
 
-        private double Sum(double value1, double value2)
+        public double Soma(double valor1, double valor2)
         {
-            var result = value1 + value2;
-            return result;
+            var resultado = valor1 + valor2;
+            return resultado;
         }
 
-        private double Subtraction(double value1, double value2)
+        private double Subtracao(double valor1, double valor2)
         {
-            var result = value1 - value2;
-            return result;
+            var resultado = valor1 - valor2;
+            return resultado;
         }
-        private double Mult(double value1, double value2)
+        private double Mult(double valor1, double valor2)
         {
-            var result = value1 * value2;
-            return result;
+            var resultado = valor1 * valor2;
+            return resultado;
         }
-        private double Div(double value1, double value2)
+        private double Div(double valor1, double valor2)
         {
-            if (value2 == 0)
+            if (valor2 == 0)
             {
                 Console.WriteLine("Impossível realizar a operação");
                 return 0;
             }
             else
             {
-                var result = value1 / value2;
-                return result;
+                var resultado = valor1 / valor2;
+                return resultado;
             }
         }
     }

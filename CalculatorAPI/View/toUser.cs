@@ -13,28 +13,28 @@ namespace cSharpLogicPrograming.View
     {
         public int Menu()
         {
-            int choice = 0;
+            int escolha = 0;
             Console.WriteLine("Escolha a operação desejada: \n 1 = Soma \n 2 = Subtração \n 3 = Multiplicação \n 4 = Divisão \n 5 = Histórico \n 6 = Sair");
-            var dataRead = Console.ReadLine();
-            choice = Int32.Parse(dataRead);
-            return choice;
+            var valorlido = Console.ReadLine();
+            escolha = Int32.Parse(valorlido);
+            return escolha;
         }
 
-        public RequestOperations GetValues(char operation)
+        public RequestOperations GetValues(string operation)
         {
-            var op = operation;
-            if (op != 'h') 
+            var operacao = operation;
+            if (operation != "h") 
             { 
             Console.WriteLine("Digite o primeiro valor:");
-            double value1 = Double.Parse(Console.ReadLine());
+            double valor1 = Double.Parse(Console.ReadLine());
             Console.WriteLine("Digite o segundo valor:");
-            double value2 = Double.Parse(Console.ReadLine());
+            double valor2 = Double.Parse(Console.ReadLine());
             Console.WriteLine("\n");
                 return new RequestOperations()
                 {
-                    Value1 = value1,
-                    Value2 = value2,
-                    Operation = op
+                    Value1 = valor1,
+                    Value2 = valor2,
+                    Operation = operacao
                 };
             }
             else 
@@ -43,36 +43,36 @@ namespace cSharpLogicPrograming.View
                 {
                     Value1 = 0,
                     Value2 = 0,
-                    Operation = op
+                    Operation = operacao
                 };
             }
             
 
         }
-        public RequestOperations UserChoice(int choice)
+        public RequestOperations UserChoice(int escolha)
         {
             RequestOperations request = null;
-            switch (choice)
+            switch (escolha)
             {
                 case 1:
                     Console.WriteLine("Realizando Soma:\n");
-                    request = GetValues('+');
+                    request = GetValues("+");
                     break;
                 case 2:
                     Console.WriteLine("Realizando Subtração:\n");
-                    request = GetValues('-');
+                    request = GetValues("-");
                     break;
                 case 3:
                     Console.WriteLine("Realizando Multiplicação:\n");
-                    request = GetValues('*');
+                    request = GetValues("*");
                     break;
                 case 4:
                     Console.WriteLine("Realizando Divisão:\n");
-                    request = GetValues('/');
+                    request = GetValues("/");
                     break;
                 case 5:
                     Console.WriteLine("Exibindo Histórico");
-                    request = GetValues('h');
+                    request = GetValues("h");
                     return request;
                 default:
                     break;
